@@ -1,7 +1,5 @@
 import pygame
 import random
-
-from buttons import Button
 import time
 
 nf=1.3
@@ -261,43 +259,58 @@ while vavv < 9:
     vvavv += 1
 # print(slot[2])
 # print(slot[17])
-slot1 = slot[0]
-slot2 = slot[3]
-slot3 = slot[6]
-slot4 = slot[1]
-slot5 = slot[4]
-slot6 = slot[7]
-slot7 = slot[2]
-slot8 = slot[5]
-slot9 = slot[8]
-slot10 = slot[9]
-slot11 = slot[12]
-slot12 = slot[15]
-slot13 = slot[10]
-slot14 = slot[13]
-slot15 = slot[16]
-slot16 = slot[11]
-slot17 = slot[14]
-slot18 = slot[17]
+ordine=[0,3,6,1,4,7,2,5,8]
+slot_alto=[slot[i] for i in ordine]
+slot_basso=[slot[i+9] for i in ordine]
+slotn=['']
+slotn.extend(slot_alto)
+slotn.extend(slot_basso)
+#print(slotn)
+#print(len(slotn))
+#slot1 = slot[0]
+#slot2 = slot[3]
+#slot3 = slot[6]
+#slot4 = slot[1]
+#slot5 = slot[4]
+#slot6 = slot[7]
+#slot7 = slot[2]
+#slot8 = slot[5]
+#slot9 = slot[8]
+#slot10 = slot[9]
+#slot11 = slot[12]
+#slot12 = slot[15]
+#slot13 = slot[10]
+#slot14 = slot[13]
+#slot15 = slot[16]
+#slot16 = slot[11]
+#slot17 = slot[14]
+#slot18 = slot[17]
 
-slot1c = '  '
-slot2c = '  '
-slot3c = '  '
-slot4c = '  '
-slot5c = '  '
-slot6c = '  '
-slot7c = '  '
-slot8c = '  '
-slot9c = '  '
-slot10c = '  '
-slot11c = '  '
-slot12c = '  '
-slot13c = '  '
-slot14c = '  '
-slot15c = '  '
-slot16c = '  '
-slot17c = '  '
-slot18c = '  '
+slot_carte_alto=['  ']*9
+slot_carte_basso=['  ']*9
+slotnc=['']
+slotnc.extend(slot_carte_alto)
+slotnc.extend(slot_carte_basso)
+#print(slotnc)
+#print(len(slotnc))
+#slot1c = '  '
+#slot2c = '  '
+#slot3c = '  '
+#slot4c = '  '
+#slot5c = '  '
+#slot6c = '  '
+#slot7c = '  '
+#slot8c = '  '
+#slot9c = '  '
+#slot10c = '  '
+#slot11c = '  '
+#slot12c = '  '
+#slot13c = '  '
+#slot14c = '  '
+#slot15c = '  '
+#slot16c = '  '
+#slot17c = '  '
+#slot18c = '  '
 
 f0 = pygame.Rect(int(160*nf), int(125*nf), int(40*nf), int(60*nf))
 f1 = pygame.Rect(int(160*nf), int(265*nf), int(40*nf), int(60*nf))
@@ -326,13 +339,13 @@ while len(mazzo)>0:
 
     cic0=(0,0,0)
     cic1=(0,0,0)
-    if '  ' in [slot1c, slot2c, slot3c, slot4c, slot5c, slot6c, slot7c, slot8c, slot9c, ]:
-        afjhfdg=''
+    if '  ' in slotnc[1:10]:
+        ccccc=''
     else:
         cic0 = (255, 255, 255)
 
-    if '  ' in [slot10c, slot11c, slot12c, slot13c, slot14c, slot15c, slot16c, slot17c, slot18c, ]:
-        agjghifh=''
+    if '  ' in slotnc[10:19]:
+        ccc=''
     else:
         cic1 = (255, 255, 255)
 
@@ -340,7 +353,8 @@ while len(mazzo)>0:
     pygame.draw.rect(screen, cic0, f0)
     f1 = pygame.Rect(int(160*nf), int(265*nf), int(40*nf), int(60*nf))
     pygame.draw.rect(screen, cic1, f1)
-
+    #print(slotnc[1:10])
+    #print(slotnc[10:19])
     pygame.display.flip()
     # print(len(mazzo))
 
@@ -358,15 +372,15 @@ while len(mazzo)>0:
                 mx, my = event.pos
 
                 if zz % 2 == 0 and f0.collidepoint(mx, my):
-                    if '  ' in [slot1c,slot2c,slot3c,slot4c,slot5c,slot6c,slot7c,slot8c,slot9c,]:
-                        bdvd=''
+                    if '  ' in slotnc[1:10]:
+                        cc=''
                     else:
                         running=False
                         mazzo=[]
                         break
                 elif zz%2 ==1 and f1.collidepoint(mx, my):
-                    if '  ' in [slot10c,slot11c,slot12c,slot13c,slot14c,slot15c,slot16c,slot17c,slot18c,]:
-                        bdvd = ''
+                    if '  ' in slotnc[10:19]:
+                        cccc=''
                     else:
                         running = False
                         mazzo = []
@@ -374,7 +388,7 @@ while len(mazzo)>0:
 
                 la = 0
                 while la < len(slot):
-                    if eval(f"slot{la + 1}.collidepoint(mx,my)"):
+                    if slotn[la + 1].collidepoint(mx,my):
                         bib=la + 1
                         running=False
                     la+=1
@@ -382,60 +396,57 @@ while len(mazzo)>0:
     if int(((bib-1)-((bib-1)%9))/9)==zz%2:
 
         cacaca = 0
-        exec(f"""
-if len(mazzo)>0:
-    if slot{bib}c!='  ':
-        redraw(slot{bib},'  ')
-        slot{bib}c='  '
-        cacaca=1
-        mazzo.pop(0)
-    """)
+        if len(mazzo)>0:
+            if slotnc[bib]!='  ':
+                redraw(slotn[bib],'  ')
+                slotnc[bib]='  '
+                cacaca=1
+                mazzo.pop(0)
 
         if len(mazzo) != 0:
             if cacaca == 0 and mazzo[0] == 'JN' or cacaca == 0 and mazzo[0] == 'JR':
                 if mazzo[0] == 'JN':
                     cacaca = 1
-                    exec(f"redraw(slot{bib},'  ')")
-                    exec(f"slot{bib}c='  '")
+                    redraw(slotn[bib],'  ')
+                    slotnc[bib]='  '
                     mazzo.pop(0)
                     vuo = 0
                     while vuo < 18:
-                        babal = eval(f"slot{vuo + 1}c[-1] == '♣' or slot{vuo + 1}c[-1] == '♠'")
+                        babal = slotnc[vuo + 1][-1] == '♣' or slotnc[vuo + 1][-1] == '♠'
                         if babal:
-                            exec(f"slot{vuo + 1}c='  '")
-                            exec(f"redraw(slot{vuo + 1},'  ')")
+                            slotnc[vuo + 1]='  '
+                            redraw(slotn[vuo + 1],'  ')
                         vuo += 1
 
                 if mazzo[0] == 'JR':
                     cacaca = 1
-                    exec(f"redraw(slot{bib},'  ')")
-                    exec(f"slot{bib}c='  '")
+                    redraw(slotn[bib],'  ')
+                    slotnc[bib]='  '
                     mazzo.pop(0)
                     vue = 0
                     while vue < 18:
-                        bebal = eval(f"slot{vue + 1}c[-1] == '♥' or slot{vue + 1}c[-1] == '♦'")
+                        bebal = slotnc[vue + 1][-1] == '♥' or slotnc[vue + 1][-1] == '♦'
                         if bebal:
-                            exec(f"slot{vue + 1}c='  '")
-                            exec(f"redraw(slot{vue + 1},'  ')")
+                            slotnc[vue + 1]='  '
+                            redraw(slotn[vue + 1],'  ')
                         vue += 1
 
-        exec(f"""
-if len(mazzo)>0:
-    if cacaca==0:
-        if slot{bib}c=='  ':
-            redraw(slot{bib},mazzo[0])
-            slot{bib}c=mazzo[0]
-            mazzo.pop(0)
-    """)
+        if len(mazzo)>0:
+            if cacaca==0:
+                if slotnc[bib]=='  ':
+                    redraw(slotn[bib],mazzo[0])
+                    slotnc[bib]=mazzo[0]
+                    mazzo.pop(0)
+
         if cacaca == 0:
 
             bellaperme = (((bib - 1) - ((bib - 1) % 3)) / 3 + 3) % 6
             # print(bellaperme)
             index = 1
             while index <= 3:
-                if eval(f"slot{int(3 * bellaperme + index)}c[-1]==slot{bib}c[-1]"):
-                    exec(f"slot{int(3 * bellaperme + index)}c='  '")
-                    exec(f"redraw(slot{int(3 * bellaperme + index)},'  ')")
+                if slotnc[int(3 * bellaperme + index)][-1]==slotnc[bib][-1]:
+                    slotnc[int(3 * bellaperme + index)]='  '
+                    redraw(slotn[int(3 * bellaperme + index)],'  ')
                     # print('ciao')
                 # print(3*bellaperme+index)
                 index += 1
@@ -447,53 +458,52 @@ if len(mazzo)>0:
         pygame.display.flip()
 
     else:
-        if eval(f"slot{bib}c=='  '"):
+        if slotnc[bib]=='  ':
             cacaca=0
             if len(mazzo) != 0:
                 if cacaca == 0 and mazzo[0] == 'JN' or cacaca == 0 and mazzo[0] == 'JR':
                     if mazzo[0] == 'JN':
                         cacaca = 1
-                        exec(f"redraw(slot{bib},'  ')")
-                        exec(f"slot{bib}c='  '")
+                        redraw(slotn[bib],'  ')
+                        slotnc[bib]='  '
                         mazzo.pop(0)
                         vuo = 0
                         while vuo < 18:
-                            babal = eval(f"slot{vuo + 1}c[-1] == '♣' or slot{vuo + 1}c[-1] == '♠'")
+                            babal = slotnc[vuo + 1][-1] == '♣' or slotnc[vuo + 1][-1] == '♠'
                             if babal:
-                                exec(f"slot{vuo + 1}c='  '")
-                                exec(f"redraw(slot{vuo + 1},'  ')")
+                                slotnc[vuo + 1]='  '
+                                redraw(slotn[vuo + 1],'  ')
                             vuo += 1
 
                     if mazzo[0] == 'JR':
                         cacaca = 1
-                        exec(f"redraw(slot{bib},'  ')")
-                        exec(f"slot{bib}c='  '")
+                        redraw(slotn[bib],'  ')
+                        slotnc[bib]='  '
                         mazzo.pop(0)
                         vue = 0
                         while vue < 18:
-                            bebal = eval(f"slot{vue + 1}c[-1] == '♥' or slot{vue + 1}c[-1] == '♦'")
+                            bebal = slotnc[vue + 1][-1] == '♥' or slotnc[vue + 1][-1] == '♦'
                             if bebal:
-                                exec(f"slot{vue + 1}c='  '")
-                                exec(f"redraw(slot{vue + 1},'  ')")
+                                slotnc[vue + 1]='  '
+                                redraw(slotn[vue + 1],'  ')
                             vue += 1
 
-            exec(f"""
-if len(mazzo)>0:
-    if cacaca==0:
-        if slot{bib}c=='  ':
-            redraw(slot{bib},mazzo[0])
-            slot{bib}c=mazzo[0]
-            mazzo.pop(0)
-""")
+            if len(mazzo)>0:
+                if cacaca==0:
+                    if slotnc[bib]=='  ':
+                        redraw(slotn[bib],mazzo[0])
+                        slotnc[bib]=mazzo[0]
+                        mazzo.pop(0)
+
             if cacaca == 0:
 
                 bellaperme = (((bib - 1) - ((bib - 1) % 3)) / 3 + 3) % 6
                 # print(bellaperme)
                 index = 1
                 while index <= 3:
-                    if eval(f"slot{int(3 * bellaperme + index)}c[-1]==slot{bib}c[-1]"):
-                        exec(f"slot{int(3 * bellaperme + index)}c='  '")
-                        exec(f"redraw(slot{int(3 * bellaperme + index)},'  ')")
+                    if slotnc[int(3 * bellaperme + index)][-1]==slotnc[bib][-1]:
+                        slotnc[int(3 * bellaperme + index)]='  '
+                        redraw(slotn[int(3 * bellaperme + index)],'  ')
                         # print('ciao')
                     # print(3*bellaperme+index)
                     index += 1
@@ -507,34 +517,34 @@ if len(mazzo)>0:
 tutt0=''
 n=0
 while n<8:
-    if eval(f"slot{n+1}c!='  ' and slot{n+1}c!='    ' and slot{n+1}c!='   '"):
-        exec(f"print(slot{n + 1}c)")
-        exec(f"tutt0+=carte[slot{n+1}c][0]+','+carte[slot{n+1}c][1]+' '")
+    if slotnc[n+1]!='  ' and slotnc[n+1]!='    ' and slotnc[n+1]!='   ':
+        print(slotnc[n + 1])
+        tutt0+=carte[slotnc[n+1]][0]+','+carte[slotnc[n+1]][1]+' '
     else:
-        exec(f"print(slot{n + 1}c)")
+        print(slotnc[n + 1])
         tutt0+='0,0 '
     n+=1
-if eval(f"slot{n+1}c!='  ' and slot{n+1}c!='    ' and slot{n+1}c!='   '"):
-    exec(f"print(slot{n + 1}c)")
-    exec(f"tutt0+=carte[slot{n+1}c][0]+','+carte[slot{n+1}c][1]")
+if slotnc[n+1]!='  ' and slotnc[n+1]!='    ' and slotnc[n+1]!='   ':
+    print(slotnc[n + 1])
+    tutt0+=carte[slotnc[n+1]][0]+','+carte[slotnc[n+1]][1]
 else:
-    exec(f"print(slot{n + 1}c)")
+    print(slotnc[n + 1])
     tutt0 += '0,0'
 tutt1=''
 m=0
 while m<8:
-    if eval(f"slot{m+10}c!='  ' and slot{m+10}c!='    ' and slot{m+10}c!='   '"):
-        exec(f"print(slot{m+10}c)")
-        exec(f"tutt1+=carte[slot{m+10}c][0]+','+carte[slot{m+10}c][1]+' '")
+    if slotnc[m+10]!='  ' and slotnc[m+10]!='    ' and slotnc[m+10]!='   ':
+        print(slotnc[m+10])
+        tutt1+=carte[slotnc[m+10]][0]+','+carte[slotnc[m+10]][1]+' '
     else:
-        exec(f"print(slot{m+10}c)")
+        print(slotnc[m+10])
         tutt1 += '0,0 '
     m+=1
-if eval(f"slot{m+10}c!='  ' and slot{m+10}c!='    ' and slot{m+10}c!='   '"):
-    exec(f"print(slot{m + 10}c)")
-    exec(f"tutt1+=carte[slot{m+10}c][0]+','+carte[slot{m+10}c][1]")
+if slotnc[m+10]!='  ' and slotnc[m+10]!='    ' and slotnc[m+10]!='   ':
+    print(slotnc[m + 10])
+    tutt1+=carte[slotnc[m+10]][0]+','+carte[slotnc[m+10]][1]
 else:
-    exec(f"print(slot{m + 10}c)")
+    print(slotnc[m + 10])
     tutt1 += '0,0'
 tutt0=tutt0.split(' ')
 tutt1=tutt1.split(' ')
