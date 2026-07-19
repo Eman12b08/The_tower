@@ -267,24 +267,6 @@ slotn.extend(slot_alto)
 slotn.extend(slot_basso)
 #print(slotn)
 #print(len(slotn))
-#slot1 = slot[0]
-#slot2 = slot[3]
-#slot3 = slot[6]
-#slot4 = slot[1]
-#slot5 = slot[4]
-#slot6 = slot[7]
-#slot7 = slot[2]
-#slot8 = slot[5]
-#slot9 = slot[8]
-#slot10 = slot[9]
-#slot11 = slot[12]
-#slot12 = slot[15]
-#slot13 = slot[10]
-#slot14 = slot[13]
-#slot15 = slot[16]
-#slot16 = slot[11]
-#slot17 = slot[14]
-#slot18 = slot[17]
 
 slot_carte_alto=['  ']*9
 slot_carte_basso=['  ']*9
@@ -293,24 +275,6 @@ slotnc.extend(slot_carte_alto)
 slotnc.extend(slot_carte_basso)
 #print(slotnc)
 #print(len(slotnc))
-#slot1c = '  '
-#slot2c = '  '
-#slot3c = '  '
-#slot4c = '  '
-#slot5c = '  '
-#slot6c = '  '
-#slot7c = '  '
-#slot8c = '  '
-#slot9c = '  '
-#slot10c = '  '
-#slot11c = '  '
-#slot12c = '  '
-#slot13c = '  '
-#slot14c = '  '
-#slot15c = '  '
-#slot16c = '  '
-#slot17c = '  '
-#slot18c = '  '
 
 f0 = pygame.Rect(int(160*nf), int(125*nf), int(40*nf), int(60*nf))
 f1 = pygame.Rect(int(160*nf), int(265*nf), int(40*nf), int(60*nf))
