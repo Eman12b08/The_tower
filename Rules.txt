@@ -1,0 +1,14 @@
+ci sono 2 campi composti da 9 slot per posizionare le carte per ognuno dei 2 campi.
+si gioca in 2 persone e il turno viene indicato da un sibolo rosso posizionato a destra.
+durante il proprio turno si puo posizionare la carta in un qualunque slot libero o si puo togliere una carta posizionata nel proprio campo.
+se viene posizionata una carta di un seme nella stessa colonna ma nel campo opposto di una carta con lo stesso seme la carta viene rimossa.
+se la carta è un jolly, o si usa per togliere una singola carta dal proprio campo, o viene posizionato su uno slot vuoto e toglie tutte le carte dello stesso colore.
+il gico finisce o quando finiscono le carte, o quando una persona occupa tutto il suo campo e nel suo turno decide di finire premendo sul quadrato posizionato o sopra o sotto il mazzo.
+il calcolo dei punti:
+il punteggio di una carta è formato dalla somma del numero più il seme.
+es: J♥= 10+4
+l'asso vale 11, le figure valgono 10, e le altre valgono quanto il loro valore.
+i semi valgono: ♥=4,♦=3,♣=2,♠=1
+se in una colonna ci sono 2 carte con lo stesso seme il loro punteggio raddoppia, e se ce ne sono 3 il loro punteggio triplica(solo delle carte con quel seme in quella colonna).
+se nel tuo campo ci sono 5, o più, carte con lo stesso seme il punteggio totale delle carte con quel seme raddoppia.
+vince chi ha fatto più punti.
