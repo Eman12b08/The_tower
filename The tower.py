@@ -3,10 +3,14 @@ import random
 import time
 
 nf=1.3
-
+sf=(0,0,0)
 pygame.init()
 screen = pygame.display.set_mode((int(210*nf), int(460*nf)))
 pygame.display.set_caption("Gioco")
+screen.fill(sf)
+
+sb=pygame.transform.scale(pygame.image.load("sb.png").convert_alpha(),(int(210*nf), int(460*nf)))
+screen.blit(sb,(0,0))
 
 font_semi = pygame.font.SysFont("segoeuiSymbol", int(36*nf))
 font_big = pygame.font.SysFont(None, int(8*nf))
@@ -229,7 +233,7 @@ def punti(tutto2):
     #print('Hai Fatto', tot, 'Punti')
     return tot
 
-
+screen.blit(sb, (0, 0))
 
 mazzo = []
 var = 0
@@ -276,8 +280,12 @@ slotnc.extend(slot_carte_basso)
 #print(slotnc)
 #print(len(slotnc))
 
-f0 = pygame.Rect(int(160*nf), int(125*nf), int(40*nf), int(60*nf))
-f1 = pygame.Rect(int(160*nf), int(265*nf), int(40*nf), int(60*nf))
+f0 = pygame.Rect(int(160*nf), int(120*nf), int(40*nf), int(60*nf))
+f1 = pygame.Rect(int(160*nf), int(270*nf), int(40*nf), int(60*nf))
+c0=pygame.transform.scale(pygame.image.load("cb.png").convert_alpha(),(int(40*nf), int(60*nf)))
+c1=pygame.transform.scale(pygame.image.load("cs.png").convert_alpha(),(int(40*nf), int(60*nf)))
+screen.blit(c0, (int(160 * nf), int(120 * nf)))
+screen.blit(c1, (int(160 * nf), int(270 * nf)))
 
 collo0 = (0, 0, 0)
 collo1 = (0, 0, 0)
@@ -296,27 +304,38 @@ while len(mazzo)>0:
     screen.blit(msgc0, (int(110*nf) + int(50*nf), int(10*nf)))
     msgc1 = font_semi.render('¤', True, collo1)
     screen.blit(msgc1, (int(110*nf) + int(50*nf), int(380*nf)))
-    msgf0 = font_med.render('F', True, (255, 0, 0))
-    msgf1 = font_med.render('F', True, (255, 0, 0))
+    msgf0 = font_med.render('F', True, sf)
+    msgf1 = font_med.render('F', True, sf)
     screen.blit(msgf0,f0.center)
     screen.blit(msgf1,f1.center)
 
-    cic0=(0,0,0)
-    cic1=(0,0,0)
+    cic0 = (0, 0, 0)
+    cic1 = (0, 0, 0)
+    f0 = pygame.Rect(int(160 * nf), int(120 * nf), int(40 * nf), int(60 * nf))
+    pygame.draw.rect(screen, cic0, f0)
+    f1 = pygame.Rect(int(160 * nf), int(270 * nf), int(40 * nf), int(60 * nf))
+    pygame.draw.rect(screen, cic1, f1)
+    
+    screen.blit(c0, (int(160 * nf), int(120 * nf)))
+    screen.blit(c1, (int(160 * nf), int(270 * nf)))
     if '  ' in slotnc[1:10]:
         ccccc=''
     else:
         cic0 = (255, 255, 255)
+        f0 = pygame.Rect(int(160 * nf), int(120 * nf), int(40 * nf), int(60 * nf))
+        pygame.draw.rect(screen, cic0, f0)
 
     if '  ' in slotnc[10:19]:
         ccc=''
     else:
         cic1 = (255, 255, 255)
+        f1 = pygame.Rect(int(160 * nf), int(270 * nf), int(40 * nf), int(60 * nf))
+        pygame.draw.rect(screen, cic1, f1)
 
-    f0 = pygame.Rect(int(160*nf), int(125*nf), int(40*nf), int(60*nf))
-    pygame.draw.rect(screen, cic0, f0)
-    f1 = pygame.Rect(int(160*nf), int(265*nf), int(40*nf), int(60*nf))
-    pygame.draw.rect(screen, cic1, f1)
+#    f0 = pygame.Rect(int(160*nf), int(120*nf), int(40*nf), int(60*nf))
+#    pygame.draw.rect(screen, cic0, f0)
+#    f1 = pygame.Rect(int(160*nf), int(270*nf), int(40*nf), int(60*nf))
+#    pygame.draw.rect(screen, cic1, f1)
     #print(slotnc[1:10])
     #print(slotnc[10:19])
     pygame.display.flip()
