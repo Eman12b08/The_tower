@@ -315,7 +315,7 @@ while len(mazzo)>0:
     pygame.draw.rect(screen, cic0, f0)
     f1 = pygame.Rect(int(160 * nf), int(270 * nf), int(40 * nf), int(60 * nf))
     pygame.draw.rect(screen, cic1, f1)
-    
+
     screen.blit(c0, (int(160 * nf), int(120 * nf)))
     screen.blit(c1, (int(160 * nf), int(270 * nf)))
     if '  ' in slotnc[1:10]:
