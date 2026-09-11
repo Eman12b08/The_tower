@@ -13,7 +13,7 @@ class SI:
         screen.blit(sb,(0,0))
 
         play=pygame.transform.scale(pygame.image.load("play.png").convert_alpha(),(int(170*nf), int(60*nf)))
-        pl=screen.blit(play,(26,208))
+        pl=screen.blit(play,(20*nf,200*nf))
 
         pygame.display.flip()
 
