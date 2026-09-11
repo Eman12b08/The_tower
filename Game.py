@@ -557,5 +557,5 @@ class Game:
         while run:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    break
                     run = False
+                    break
