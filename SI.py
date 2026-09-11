@@ -13,12 +13,15 @@ class SI:
         screen.blit(sb,(0,0))
 
         play=pygame.transform.scale(pygame.image.load("play.png").convert_alpha(),(int(170*nf), int(60*nf)))
-        pl=screen.blit(play,(20,200))
+        pl=screen.blit(play,(26,208))
+
+        pygame.display.flip()
 
         run = True
         while run:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
+                    a=x-Y
                     pygame.quit()
                     run = False
                 elif event.type == pygame.MOUSEBUTTONDOWN:
